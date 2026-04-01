@@ -111,7 +111,14 @@ async def on_message(message):
         if mention.id in afk_kullanicilar:
             sebep = afk_kullanicilar[mention.id]
             await message.channel.send(f"⚠️ {mention.name} şu an AFK durumda! \n📝 Sebep: **{sebep}**")
-            
+
+    # ====================== SELAM KARŞILAMA ======================
+    selam_kelimeleri = ["sa", "selamın aleyküm", "selaminaleykum", "selamünaleyküm", "selamunaleykum", "s.a", "s.a.", "sa "]
+    mesaj_kucuk = message.content.lower().strip()
+    if mesaj_kucuk in selam_kelimeleri or mesaj_kucuk.startswith(tuple(selam_kelimeleri)):
+        await message.channel.send(f"{message.author.mention} **Aleykümselam, hoş geldin!**")
+    # ================================================================
+
     await bot.process_commands(message)
 
 
